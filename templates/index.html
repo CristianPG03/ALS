@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+        <div id="dvPostsPrevios">
+        {% if posts %}
+            <ul>
+                {% for post in posts %}
+                    <div class="postIndividual demo-card-wide mdl-card mdl-shadow--8dp">
+                        <div class="divInfo mdl-card__actions mdl-card--border">
+                            <p id="postOwner">{{ post.userName }}</p>
+                            <p id="fechaPost">{{ post.postFecha }}</p>
+                        </div>
+                        <div class="divVerPost mdl-card__actions mdl-card--border">
+                            <a style="display: grid" onclick="location.href = './show_post/?oid={{ sirope.safe_from_oid(post.__oid__) }}';" id="showPostButton" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Ver Post</a>
+                        </div>
+                        <div class="divTexto mdl-card__supporting-text">
+                            <p id="textoPost">
+                                {{ post.textPost }}
+                            </p>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2 style="margin:auto;color:white;"> Todavía no hay posts </h2>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> INICIO DE SESIÓN </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-light_blue.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/estilos.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+<body>
+    <div id="frmLogin">
+        <form id="frmLogin"
+            method="post"
+            action="/login">
+
+            <div id="backLogin">
+                <div id="divNombreApp">
+                    <h1 id="nombreApp">POSTMANÍA</h1>
+                </div>
+                {% if not usr %}
+                    <div id="edNombre" name="edNombre" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input id="edNombre" name="edNombre" class="inputType mdl-textfield__input" type="text" id="sample3" maxlength="20">
+                        <label style="color:rgb(96,125,139)" id="edNombre" name="edNombre" class="labelType mdl-textfield__label" for="sample3">Nombre</label>
+                    </div>
+
+                    <div id="edEmail" name="edEmail" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input id="edEmail" name="edEmail" class="inputType mdl-textfield__input" type="text" id="sample3" maxlength="25">
+                        <label style="color:rgb(96,125,139)" id="edEmail" name="edEmail" class="labelType mdl-textfield__label" for="sample3">Email</label>
+                    </div>
+
+                    <div id="edPassword" name="edPassword" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input id="edPassword" name="edPassword" class="inputType mdl-textfield__input" type="password" id="sample3">
+                        <label style="color:rgb(96,125,139)" id="edPassword" name="edPassword" class="labelType mdl-textfield__label" for="sample3">Contraseña</label>
+                    </div>
+                {% endif %}
+                <br>
+                <div id="divBtnLogin">
+                    <input type="submit" class="btnAzul" value="Iniciar sesion"/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="dvError" id="dvError">
+        {% with msgs = get_flashed_messages() %}
+        {% if msgs %}
+            <ul>
+            {% for msg in msgs  %}
+            <div class="window-notice" id="window-notice">
+
+                <div class="content">
+                    <div class="content-text">{{ msg }} </div>
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="this.parentElement.parentElement.style.display='none';">Aceptar</a>
+                </div>
+            </div>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

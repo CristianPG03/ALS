@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="dvShowPost">
+        {% if post %}
+            <label id="userPost">Post de {{ post.userName }}</label><br>
+            <label id="textoPost">{{ post.textPost }}</label><br>
+
+            <h5 style="font-style:initial; margin-top:4rem"> *** COMENTARIOS *** </h5>
+            <div class="formComRes">
+                <div class="mdl-list__item-primary-content" id="frmComentario">
+                    <form id="frmComentario"
+                        method="post"
+                        action="/save_comment">
+
+                        <div id="edComentario" name="edComentario" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input id="edComentario" name="edComentario" class="mdl-textfield__input" type="text"  maxlength="100" rows= "4" id="sample5"/>
+                            <label id="edComentario" name="edComentario" style="color:white" class="labelType mdl-textfield__label" for="sample5">Comentario</label>
+                        </div>
+
+                        <input type="hidden" id="edOid" name="edOid" value="{{ oid }}">
+                        <input class="btnAzul" type="submit" value="Comentar"/>
+                    </form>
+                </div>
+                {% for com in comentarios %}
+                    <ul>
+                        <p id="mainComment"> {{ com }}</p>
+
+                        {% if comentarios[com] %}
+                            {% for res in comentarios[com] %}
+                                <p id="answerToComment">  &nbsp &nbsp &nbsp &nbsp  {{ res }} </p>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="mdl-list__item-secondary-content" id="frmRespuesta">
+                            <form id="frmRespuesta"
+                                method="post"
+                                action="/save_answer">
+
+                                <div id="edRespuesta" name="edRespuesta" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input id="edRespuesta" name="edRespuesta" class="inputType mdl-textfield__input" type="text"  maxlength="100" rows= "2" id="sample5" ></input>
+                                    <label id="edRespuesta" name="edRespuesta" style="color:white" class="labelType mdl-textfield__label" for="sample5">Respuesta</label>
+                                </div>
+                                
+                                <input type="hidden" id="edOid" name="edOid" value="{{ oid }}">
+                                <input type="hidden" id="edComentario" name="edComentario" value="{{ com }}">
+                                <input class="btnAzul" type="submit" value="Responder"/>
+                            </form>
+                        </div>
+                    </ul>
+                {% endfor %}
+            </div>
+
+            {% if post.userPost == usr %}
+                <br/>
+                <br/>
+                <a style="display: grid" onclick="document.getElementById('del_window-notice').style.display='block'" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> <strong>Eliminar post</strong></a>
+                
+                <div style="padding: 150px " class="window-notice" id="del_window-notice">
+                    <div class="content">
+                        <div class="content-text">Estás seguro? </div>
+                        <a style="display: inline" class="acceptButton mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="this.parentElement.parentElement.style.display='none';">Cancelar</a>
+                        <a style="display: inline" class="acceptButton mdl-button mdl-button--colored_aceptar mdl-js-button mdl-js-ripple-effect" onclick="location.href = '../del_post/?oid={{oid}}&usr={{ post.userPost }}';">Confirmar</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <p>Todavía no hay post </p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POSTMANÍA</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-light_blue.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/estilos.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span style="font-size: 200%" class="mdl-layout-title">| POSTMANÍA |</span>&nbsp;<span style="font-size: 150%">{{usr.nombre}}</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <a id="menuOpcion" class="mdl-navigation__link"  href="/">Ver posts</a>
+      <a id="menuOpcion" class="mdl-navigation__link" href="../intro_post">Subir post</a>
+      <a id="menuOpcion" class="mdl-navigation__link" href="../logout">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="tituloMenuLateral mdl-layout-title">Posts</span>
+    <nav class="mdl-navigation">
+      <a id="menuOpcion" class="mdl-navigation__link" href="/">Ver posts</a>
+      <a id="menuOpcion" class="mdl-navigation__link" href="../intro_post">Subir post</a>
+      <a id="menuOpcion" class="mdl-navigation__link" href="../logout">Cerrar sesión</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">{% block content %}{% endblock %} </div>
+  </main>
+</div>
+
+    <div class="dvError" id="dvError">
+        {% with msgs = get_flashed_messages() %}
+        {% if msgs %}
+            <ul>
+            {% for msg in msgs  %}
+            <div class="window-notice" id="window-notice">
+
+                <div class="content">
+                    <div class="content-text">{{ msg }} </div>
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="this.parentElement.parentElement.style.display='none';">Aceptar</a>
+                </div>
+            </div>
+
+            {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

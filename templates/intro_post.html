@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="frmPost">
+        <h1 id="subirPostTitulo"> SUBIR POST </h1>
+        <form id="frmPostContent"
+            enctype="multipart/form-data"
+            method="post"
+            action="/save_post">
+
+            <div id="edTexto" name="edTexto" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input id="edTexto" name="edTexto" class="inputType mdl-textfield__input" type="text" id="sample3" maxlength="100">
+                <label style="color: white" id="edTexto" name="edTexto" class="labelType mdl-textfield__label" for="sample3">Contenido</label>
+            </div>
+            <br/>
+            <input type="hidden" id="edFechaActual" name="edFechaActual" value="{{ fechaActual }}"/>
+
+            <input class="btnAzul" type="submit" value="Subir"/>
+        </form>
+    </div>
+{% endblock %}
