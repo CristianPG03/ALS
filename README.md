@@ -1,4 +1,4 @@
-Proyecto final de ALS de Cristian Pérez Gómez (34629985N)
+Proyecto final de ALS de Cristian Pérez Gómez
 
 El proyecto se llama "POSTMANÍA" y consiste en una app en la que se pueden publicar posts y ver los posts publicados por otros usuarios.
 
